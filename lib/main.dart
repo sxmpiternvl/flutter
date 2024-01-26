@@ -11,7 +11,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHotelWidget(),
+      theme: ThemeData(
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(fontFamily: 'SfPRO'),
+          bodyMedium: TextStyle(fontFamily: 'SfPRO'),
+          bodySmall: TextStyle(fontFamily: 'SfPRO'),
+          labelMedium: TextStyle(fontFamily: 'SfPRO'),
+        ),
+      ),
+      home: HotelPage(),
     );
   }
 }
