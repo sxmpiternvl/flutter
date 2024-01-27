@@ -377,7 +377,7 @@ class _HotelPageState extends State<HotelPage> {
                                     width: double.infinity,
                                     child: const Center(
                                         child: Text(
-                                      "К ВЫБОРУ НОМЕРА",
+                                      "К выбору номера",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
