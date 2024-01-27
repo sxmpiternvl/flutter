@@ -140,7 +140,7 @@ class _HotelPageState extends State<HotelPage> {
                                             51, 255, 168, 0)),
                                     height: 29,
                                     width: 149,
-                                    child: const Row(
+                                    child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
@@ -150,7 +150,7 @@ class _HotelPageState extends State<HotelPage> {
                                               Color.fromARGB(255, 255, 168, 0),
                                         ),
                                         Text(
-                                          "5 Превосходно",
+                                          '${hotelData?['rating']} ${hotelData?['rating_name']}',
                                           style: TextStyle(
                                               color: Color.fromARGB(
                                                   255, 255, 168, 0),
