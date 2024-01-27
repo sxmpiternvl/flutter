@@ -14,6 +14,8 @@ class RoomsPage extends StatefulWidget {
 }
 
 class _RoomsPageState extends State<RoomsPage> {
+  int _currentPage = 0;
+
   Future<Map<String, dynamic>>? _data;
   final _pageController = PageController();
   final _currentPageNotifier = ValueNotifier<int>(0);
@@ -22,6 +24,11 @@ class _RoomsPageState extends State<RoomsPage> {
   void initState() {
     super.initState();
     _data = fetchRoomsData();
+    _pageController.addListener(() {
+      setState(() {
+        _currentPage = _pageController.page!.toInt();
+      });
+    });
   }
 
   @override
@@ -71,33 +78,63 @@ class _RoomsPageState extends State<RoomsPage> {
                       ),
                       child: Column(
                         children: [
-                          Container(
-                            height: 257,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                top: 16.0,
-                                left: 16,
-                                right: 16,
-                                bottom: 8,
+                          Stack(
+                            children: [
+                              Container(
+                                height: 257,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 16.0,
+                                    left: 16,
+                                    right: 16,
+                                    bottom: 8,
+                                  ),
+                                  child: PageView.builder(
+                                    controller: _pageController,
+                                    itemCount: room['image_urls'].length,
+                                    itemBuilder: (context, index) {
+                                      return ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Image.network(
+                                          room['image_urls'][index],
+                                          width: 200,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      );
+                                    },
+                                    onPageChanged: (int index) {
+                                      setState(() {
+                                        _currentPage = index;
+                                      });
+                                    },
+                                  ),
+                                ),
                               ),
-                              child: PageView.builder(
-                                controller: _pageController,
-                                itemCount: room['image_urls'].length,
-                                itemBuilder: (context, index) {
-                                  return ClipRRect(
-                                    borderRadius: BorderRadius.circular(15),
-                                    child: Image.network(
-                                      room['image_urls'][index],
-                                      width: 200,
-                                      fit: BoxFit.cover,
+                              Positioned(
+                                bottom: 15.0,
+                                left: 0,
+                                right: 0,
+                                child: Center(
+                                  child: Container(
+                                    decoration: (BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Colors.white)),
+                                    height: 17,
+                                    width: 89,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: List.generate(
+                                        room['image_urls']?.length ?? 0,
+                                        (index) => buildIndicator(index),
+                                      ),
                                     ),
-                                  );
-                                },
-                                onPageChanged: (int index) {
-                                  _currentPageNotifier.value = index;
-                                },
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
@@ -249,6 +286,18 @@ class _RoomsPageState extends State<RoomsPage> {
             );
           }
         },
+      ),
+    );
+  }
+
+  Widget buildIndicator(int index) {
+    return Container(
+      width: 8.0,
+      height: 8.0,
+      margin: const EdgeInsets.symmetric(horizontal: 4.0),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: _currentPage == index ? Colors.black : Colors.grey,
       ),
     );
   }

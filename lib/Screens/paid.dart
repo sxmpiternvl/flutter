@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled1/Screens/home.dart';
@@ -10,9 +11,12 @@ class PaidScreen extends StatefulWidget {
 }
 
 class _PaidScreenState extends State<PaidScreen> {
+  int confirmationNumber = 100 + Random().nextInt(901);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -35,7 +39,7 @@ class _PaidScreenState extends State<PaidScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 140,
           ),
           Container(
@@ -53,26 +57,26 @@ class _PaidScreenState extends State<PaidScreen> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 32,
           ),
           const Text(
             'Ваш заказ принят в работу',
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.1),
-            child: const Text(
-              'Подтверждение заказа # может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.',
+            child: Text(
+              'Подтверждение заказа №$confirmationNumber может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
-                color: Color(0xFF828796),
+                color: const Color(0xFF828796),
               ),
             ),
           ),
@@ -101,7 +105,7 @@ class _PaidScreenState extends State<PaidScreen> {
                   width: double.infinity,
                   child: const Center(
                     child: Text(
-                      "Супер",
+                      "Супер!",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
