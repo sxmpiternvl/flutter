@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled1/Screens/home.dart';
-import 'package:untitled1/Screens/reservationPage.dart';
+import 'package:untitled1/Screens/1home.dart';
+import 'package:untitled1/Screens/3reservationPage.dart';
 import '../models/rooms.dart';
 
 class RoomsPage extends StatefulWidget {
@@ -39,8 +39,6 @@ class _RoomsPageState extends State<RoomsPage> {
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
-            // Navigator.pushReplacement(
-            //     context, MaterialPageRoute(builder: (context) => HotelPage()));
           },
           icon: const Icon(
             Icons.arrow_back_ios,

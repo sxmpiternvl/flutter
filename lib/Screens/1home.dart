@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled1/Screens/rooms.dart';
+import 'package:untitled1/Screens/2rooms.dart';
 import 'package:untitled1/models/hotels.dart';
 
 class HotelPage extends StatefulWidget {
@@ -217,7 +217,6 @@ class _HotelPageState extends State<HotelPage> {
                     const SizedBox(
                       height: 8,
                     ),
-                    ////
                     Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -290,8 +289,8 @@ class _HotelPageState extends State<HotelPage> {
                                 ),
                                 height: 184,
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .spaceAround, // Устанавливаем распределение по вертикали
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     buildRow(
                                         'Удобства', 'Самое необходимое', '''

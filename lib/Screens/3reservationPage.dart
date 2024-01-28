@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled1/Screens/paid.dart';
+import 'package:untitled1/Screens/4paid.dart';
 import 'package:untitled1/models/reserv.dart';
-import 'package:untitled1/util/dad.dart';
-
-import '../util/validation_utils.dart';
 
 class ReservationPage extends StatefulWidget {
   const ReservationPage({
@@ -25,19 +22,20 @@ class _ReservationPageState extends State<ReservationPage> {
   final List<Widget> _touristForms = [];
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _controller = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController surnameController = TextEditingController();
-  TextEditingController dobController = TextEditingController();
-  TextEditingController citizenshipController = TextEditingController();
-  TextEditingController passportNumberController = TextEditingController();
-  TextEditingController passportValidityController = TextEditingController();
-  Color _errorColor = Color(0x15EB5757);
-  Color nameContainerColor = Color(0xFFF6F6F9);
-  Color surnameContainerColor = Color(0xFFF6F6F9);
-  Color dobContainerColor = Color(0xFFF6F6F9);
-  Color citizenshipContainerColor = Color(0xFFF6F6F9);
-  Color passportNumberContainerColor = Color(0xFFF6F6F9);
-  Color passportValidityContainerColor = Color(0xFFF6F6F9);
+  List<TextEditingController> nameControllers = [];
+  List<TextEditingController> surnameControllers = [];
+  List<TextEditingController> dobControllers = [];
+  List<TextEditingController> citizenshipControllers = [];
+  List<TextEditingController> passportNumberControllers = [];
+  List<TextEditingController> passportValidityControllers = [];
+
+  final Color _errorColor = const Color(0x15EB5757);
+  Color nameContainerColor = const Color(0xFFF6F6F9);
+  Color surnameContainerColor = const Color(0xFFF6F6F9);
+  Color dobContainerColor = const Color(0xFFF6F6F9);
+  Color citizenshipContainerColor = const Color(0xFFF6F6F9);
+  Color passportNumberContainerColor = const Color(0xFFF6F6F9);
+  Color passportValidityContainerColor = const Color(0xFFF6F6F9);
 
   @override
   void initState() {
@@ -80,11 +78,38 @@ class _ReservationPageState extends State<ReservationPage> {
     setState(() {
       _expandedList.add(false);
       int touristIndex = _touristForms.length + 1;
+
+      TextEditingController nameController = TextEditingController();
+      TextEditingController surnameController = TextEditingController();
+      TextEditingController dobController = TextEditingController();
+      TextEditingController citizenshipController = TextEditingController();
+      TextEditingController passportNumberController = TextEditingController();
+      TextEditingController passportValidityController =
+          TextEditingController();
+
+      nameControllers.add(nameController);
+      surnameControllers.add(surnameController);
+      dobControllers.add(dobController);
+      citizenshipControllers.add(citizenshipController);
+      passportNumberControllers.add(passportNumberController);
+      passportValidityControllers.add(passportValidityController);
+
       _touristForms.add(_buildTouristForm(touristIndex));
     });
   }
 
   Widget _buildTouristForm(int touristIndex) {
+    TextEditingController nameController = nameControllers[touristIndex - 1];
+    TextEditingController surnameController =
+        surnameControllers[touristIndex - 1];
+    TextEditingController dobController = dobControllers[touristIndex - 1];
+    TextEditingController citizenshipController =
+        citizenshipControllers[touristIndex - 1];
+    TextEditingController passportNumberController =
+        passportNumberControllers[touristIndex - 1];
+    TextEditingController passportValidityController =
+        passportValidityControllers[touristIndex - 1];
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Column(
@@ -123,33 +148,27 @@ class _ReservationPageState extends State<ReservationPage> {
           onChanged: (value) {
             if (value.isNotEmpty) {
               setState(() {
-                nameContainerColor = Color(0xFFF6F6F9);
-                surnameContainerColor = Color(0xFFF6F6F9);
-                dobContainerColor = Color(0xFFF6F6F9);
-                citizenshipContainerColor = Color(0xFFF6F6F9);
-                passportNumberContainerColor = Color(0xFFF6F6F9);
-                passportValidityContainerColor = Color(0xFFF6F6F9);
+                nameContainerColor = const Color(0xFFF6F6F9);
+                surnameContainerColor = const Color(0xFFF6F6F9);
+                dobContainerColor = const Color(0xFFF6F6F9);
+                citizenshipContainerColor = const Color(0xFFF6F6F9);
+                passportNumberContainerColor = const Color(0xFFF6F6F9);
+                passportValidityContainerColor = const Color(0xFFF6F6F9);
               });
             }
           },
           decoration: InputDecoration(
             labelText: labelText,
-            border: InputBorder.none,
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(
-                color: Colors.transparent,
-              ),
+            labelStyle: const TextStyle(
+              color: Color.fromARGB(255, 189, 171, 183),
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
             ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(
-                color: Colors.transparent,
-              ),
+            border: const OutlineInputBorder(
+              borderSide: BorderSide.none,
             ),
-            floatingLabelAlignment: FloatingLabelAlignment.start,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12),
           ),
-          validator: (value) => ValidationUtils.validateName(value!),
         ),
       ),
     );
@@ -295,12 +314,12 @@ class _ReservationPageState extends State<ReservationPage> {
                                 width: 203,
                                 child: Text(
                                   '${_data!['departure']}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
                                 )),
                           ],
-                        ), //
+                        ),
                         const SizedBox(
                           height: 16,
                         ),
@@ -320,12 +339,12 @@ class _ReservationPageState extends State<ReservationPage> {
                                 width: 203,
                                 child: Text(
                                   '${_data!['arrival_country']}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
                                 )),
                           ],
-                        ), //
+                        ),
                         const SizedBox(
                           height: 16,
                         ),
@@ -345,12 +364,12 @@ class _ReservationPageState extends State<ReservationPage> {
                               width: 203,
                               child: Text(
                                 '${_data!['tour_date_start']}-${_data!['tour_date_stop']}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.w400, fontSize: 16),
                               ),
                             ),
                           ],
-                        ), //dati
+                        ),
                         const SizedBox(
                           height: 16,
                         ),
@@ -370,12 +389,12 @@ class _ReservationPageState extends State<ReservationPage> {
                               width: 203,
                               child: Text(
                                 '${_data!['number_of_nights']} ночей',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.w400, fontSize: 16),
                               ),
                             ),
                           ],
-                        ), //kolvo nochei
+                        ),
                         const SizedBox(
                           height: 16,
                         ),
@@ -396,7 +415,7 @@ class _ReservationPageState extends State<ReservationPage> {
                               width: 203,
                               child: Text(
                                 '${_data!['hotel_name']}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.w400, fontSize: 16),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
@@ -424,7 +443,7 @@ class _ReservationPageState extends State<ReservationPage> {
                                 width: 203,
                                 child: Text(
                                   '${_data!['room']}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
                                 )),
@@ -449,7 +468,7 @@ class _ReservationPageState extends State<ReservationPage> {
                                 width: 203,
                                 child: Text(
                                   '${_data!['nutrition']}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16),
                                 )),
@@ -503,7 +522,7 @@ class _ReservationPageState extends State<ReservationPage> {
                                   ),
                                 ),
                                 TextFormField(
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400),
                                   controller: _controller,
@@ -607,47 +626,45 @@ class _ReservationPageState extends State<ReservationPage> {
                   ),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: Container(
-                      child: Column(
-                        children: [
-                          ExpansionPanelList.radio(
-                            materialGapSize: 8,
-                            expandIconColor:
-                                const Color.fromARGB(255, 13, 114, 255),
-                            elevation: 0.0,
-                            expansionCallback: (panelIndex, isExpanded) {
-                              setState(() {
-                                _expandedList[panelIndex] = !isExpanded;
-                              });
-                            },
-                            children: _touristForms
-                                .asMap()
-                                .entries
-                                .map<ExpansionPanelRadio>((entry) {
-                              final index = entry.key;
-                              final touristForm = entry.value;
-                              return ExpansionPanelRadio(
-                                value: index,
-                                headerBuilder: (context, isExpanded) {
-                                  return ListTile(
-                                    title: Text(
-                                      '${numbers[index + 1]} турист',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 22,
-                                      ),
+                    child: Column(
+                      children: [
+                        ExpansionPanelList.radio(
+                          materialGapSize: 8,
+                          expandIconColor:
+                              const Color.fromARGB(255, 13, 114, 255),
+                          elevation: 0.0,
+                          expansionCallback: (panelIndex, isExpanded) {
+                            setState(() {
+                              _expandedList[panelIndex] = !isExpanded;
+                            });
+                          },
+                          children: _touristForms
+                              .asMap()
+                              .entries
+                              .map<ExpansionPanelRadio>((entry) {
+                            final index = entry.key;
+                            final touristForm = entry.value;
+                            return ExpansionPanelRadio(
+                              value: index,
+                              headerBuilder: (context, isExpanded) {
+                                return ListTile(
+                                  title: Text(
+                                    '${numbers[index + 1]} турист',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 22,
                                     ),
-                                  );
-                                },
-                                body: Padding(
-                                  padding: const EdgeInsets.only(bottom: 8.0),
-                                  child: touristForm,
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ],
-                      ),
+                                  ),
+                                );
+                              },
+                              body: Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: touristForm,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(
@@ -834,54 +851,70 @@ class _ReservationPageState extends State<ReservationPage> {
   void _colorEmptyFieldsForAllTourists() {
     setState(() {
       for (int i = 0; i < _touristForms.length; i++) {
-        final nameIsEmpty = nameController.text.isEmpty;
-        final surnameIsEmpty = surnameController.text.isEmpty;
-        final dobIsEmpty = dobController.text.isEmpty;
-        final citizenshipIsEmpty = citizenshipController.text.isEmpty;
-        final passportNumberIsEmpty = passportNumberController.text.isEmpty;
-        final passportValidityIsEmpty = passportValidityController.text.isEmpty;
+        TextEditingController nameController = nameControllers[i];
+        TextEditingController surnameController = surnameControllers[i];
+        TextEditingController dobController = dobControllers[i];
+        TextEditingController citizenshipController = citizenshipControllers[i];
+        TextEditingController passportNumberController =
+            passportNumberControllers[i];
+        TextEditingController passportValidityController =
+            passportValidityControllers[i];
 
-        if (nameIsEmpty) {
+        if (nameController.text.isEmpty) {
           nameContainerColor = _errorColor;
         }
-        if (surnameIsEmpty) {
+        if (surnameController.text.isEmpty) {
           surnameContainerColor = _errorColor;
         }
-        if (dobIsEmpty) {
+        if (dobController.text.isEmpty) {
           dobContainerColor = _errorColor;
         }
-        if (citizenshipIsEmpty) {
+        if (citizenshipController.text.isEmpty) {
           citizenshipContainerColor = _errorColor;
         }
-        if (passportNumberIsEmpty) {
+        if (passportNumberController.text.isEmpty) {
           passportNumberContainerColor = _errorColor;
         }
-        if (passportValidityIsEmpty) {
+        if (passportValidityController.text.isEmpty) {
           passportValidityContainerColor = _errorColor;
         }
-
-        // Обновляем UI для туриста с индексом i
         _touristForms[i] = _buildTouristForm(i + 1);
       }
     });
   }
 
   void _navigateToPaidScreen(BuildContext context) {
-    // Проверка всех полей на заполнение
-    if (nameController.text.isEmpty ||
-        surnameController.text.isEmpty ||
-        dobController.text.isEmpty ||
-        citizenshipController.text.isEmpty ||
-        passportNumberController.text.isEmpty ||
-        passportValidityController.text.isEmpty) {
-      _colorEmptyFieldsForAllTourists();
-    } else {
+    bool allFieldsFilled = true;
+    for (int i = 0; i < _touristForms.length; i++) {
+      TextEditingController nameController = nameControllers[i];
+      TextEditingController surnameController = surnameControllers[i];
+      TextEditingController dobController = dobControllers[i];
+      TextEditingController citizenshipController = citizenshipControllers[i];
+      TextEditingController passportNumberController =
+          passportNumberControllers[i];
+      TextEditingController passportValidityController =
+          passportValidityControllers[i];
+
+      if (nameController.text.isEmpty ||
+          surnameController.text.isEmpty ||
+          dobController.text.isEmpty ||
+          citizenshipController.text.isEmpty ||
+          passportNumberController.text.isEmpty ||
+          passportValidityController.text.isEmpty) {
+        allFieldsFilled = false;
+        break;
+      }
+    }
+
+    if (allFieldsFilled) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => PaidScreen(),
+          builder: (context) => const PaidScreen(),
         ),
       );
+    } else {
+      _colorEmptyFieldsForAllTourists();
     }
   }
 }
@@ -910,11 +943,9 @@ class _PhoneNumberFormatter extends TextInputFormatter {
         formattedText += maskChar;
       }
     }
-
     return TextEditingValue(
       text: formattedText,
       selection: TextSelection.collapsed(offset: formattedText.length),
     );
   }
 }
-//

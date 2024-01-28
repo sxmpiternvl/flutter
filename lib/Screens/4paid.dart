@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled1/Screens/home.dart';
+import 'package:untitled1/Screens/1home.dart';
 
 class PaidScreen extends StatefulWidget {
   const PaidScreen({Key? key}) : super(key: key);
@@ -80,7 +80,7 @@ class _PaidScreenState extends State<PaidScreen> {
               ),
             ),
           ),
-          const Spacer(), // Занимает все свободное пространство
+          const Spacer(),
           Container(
             decoration: BoxDecoration(
               color: Colors.white,
