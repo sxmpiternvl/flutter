@@ -6,7 +6,7 @@ class ValidationUtils {
         .hasMatch(value)) {
       return 'Invalid email format';
     }
-    return null; // Validation passed
+    return null;
   }
 
   static String? validatePhoneNumber(String value) {
@@ -20,41 +20,41 @@ class ValidationUtils {
     if (value.isEmpty) {
       return 'Name is required';
     }
-    return null; // Validation passed
+    return null;
   }
 
   static String? validateFamily(String value) {
     if (value.isEmpty) {
       return 'Family is required';
     }
-    return null; // Validation passed
+    return null;
   }
 
   static String? validateBirthday(String value) {
     if (value.isEmpty) {
       return 'Birthday is required';
     }
-    return null; // Validation passed
+    return null;
   }
 
   static String? validateCitizenship(String value) {
     if (value.isEmpty) {
       return 'Citizenship is required';
     }
-    return null; // Validation passed
+    return null;
   }
 
   static String? validatePassportNumber(String value) {
     if (value.isEmpty) {
       return 'Passport Number is required';
     }
-    return null; // Validation passed
+    return null;
   }
 
   static String? validatePassportValidity(String value) {
     if (value.isEmpty) {
       return 'Passport Validity is required';
     }
-    return null; // Validation passed
+    return null;
   }
 }

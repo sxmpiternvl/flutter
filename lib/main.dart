@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodyLarge: TextStyle(fontFamily: 'SfPRO'),
           bodyMedium: TextStyle(fontFamily: 'SfPRO'),
           bodySmall: TextStyle(fontFamily: 'SfPRO'),
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: HotelPage(),
+      home: const HotelPage(),
     );
   }
 }
