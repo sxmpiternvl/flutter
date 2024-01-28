@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
           labelMedium: TextStyle(fontFamily: 'SfPRO'),
         ),
       ),
+      debugShowCheckedModeBanner: false,
       home: HotelPage(),
     );
   }
