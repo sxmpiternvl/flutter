@@ -236,7 +236,7 @@ class _HotelPageState extends State<HotelPage> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 12.0),
+                              padding: const EdgeInsets.only(top: 16.0),
                               child: Wrap(
                                 children: List.generate(
                                   hotelData!['about_the_hotel']
@@ -244,18 +244,23 @@ class _HotelPageState extends State<HotelPage> {
                                           .length ??
                                       0,
                                   (index) => Container(
-                                    color:
-                                        const Color.fromARGB(1, 130, 135, 150),
                                     child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: const Color.fromARGB(
+                                            10, 130, 135, 150),
+                                      ),
+                                      margin: EdgeInsets.only(right: 8, top: 8),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 5.0, horizontal: 10),
                                         child: Text(
                                           '${hotelData!['about_the_hotel']?['peculiarities'][index] ?? 'Нет данных'}',
                                           style: const TextStyle(
-                                            color: Color(0xFF828796),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                              color: Color(0xFF828796),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                              fontFamily: 'SfPRO'),
                                         ),
                                       ),
                                     ),

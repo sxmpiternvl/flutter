@@ -18,7 +18,6 @@ class ReservationPage extends StatefulWidget {
 
 class _ReservationPageState extends State<ReservationPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final List<bool> _touristFormValidity = [];
   final FocusNode _emailFocusNode = FocusNode();
   bool _isEmailInvalid = false;
   Map<String, dynamic>? _data;
@@ -294,7 +293,12 @@ class _ReservationPageState extends State<ReservationPage> {
                             ),
                             SizedBox(
                                 width: 203,
-                                child: Text('${_data!['departure']}')),
+                                child: Text(
+                                  '${_data!['departure']}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16),
+                                )),
                           ],
                         ), //
                         const SizedBox(
@@ -314,7 +318,12 @@ class _ReservationPageState extends State<ReservationPage> {
                             ),
                             SizedBox(
                                 width: 203,
-                                child: Text('${_data!['arrival_country']}')),
+                                child: Text(
+                                  '${_data!['arrival_country']}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16),
+                                )),
                           ],
                         ), //
                         const SizedBox(
@@ -335,7 +344,10 @@ class _ReservationPageState extends State<ReservationPage> {
                             SizedBox(
                               width: 203,
                               child: Text(
-                                  '${_data!['tour_date_start']}-${_data!['tour_date_stop']}'),
+                                '${_data!['tour_date_start']}-${_data!['tour_date_stop']}',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 16),
+                              ),
                             ),
                           ],
                         ), //dati
@@ -355,9 +367,13 @@ class _ReservationPageState extends State<ReservationPage> {
                               ),
                             ),
                             SizedBox(
-                                width: 203,
-                                child: Text(
-                                    '${_data!['number_of_nights']} ночей')),
+                              width: 203,
+                              child: Text(
+                                '${_data!['number_of_nights']} ночей',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 16),
+                              ),
+                            ),
                           ],
                         ), //kolvo nochei
                         const SizedBox(
@@ -380,6 +396,8 @@ class _ReservationPageState extends State<ReservationPage> {
                               width: 203,
                               child: Text(
                                 '${_data!['hotel_name']}',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 16),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -390,6 +408,7 @@ class _ReservationPageState extends State<ReservationPage> {
                           height: 16,
                         ),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
@@ -402,7 +421,13 @@ class _ReservationPageState extends State<ReservationPage> {
                               ),
                             ),
                             SizedBox(
-                                width: 203, child: Text('${_data!['room']}')),
+                                width: 203,
+                                child: Text(
+                                  '${_data!['room']}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16),
+                                )),
                           ],
                         ),
                         const SizedBox(
@@ -422,7 +447,12 @@ class _ReservationPageState extends State<ReservationPage> {
                             ),
                             SizedBox(
                                 width: 203,
-                                child: Text('${_data!['nutrition']}')),
+                                child: Text(
+                                  '${_data!['nutrition']}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16),
+                                )),
                           ],
                         ),
                       ],
@@ -581,6 +611,7 @@ class _ReservationPageState extends State<ReservationPage> {
                       child: Column(
                         children: [
                           ExpansionPanelList.radio(
+                            materialGapSize: 8,
                             expandIconColor:
                                 const Color.fromARGB(255, 13, 114, 255),
                             elevation: 0.0,

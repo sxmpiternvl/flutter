@@ -159,7 +159,7 @@ class _RoomsPageState extends State<RoomsPage> {
                                           ),
                                           child: Container(
                                             margin:
-                                                const EdgeInsets.only(right: 5),
+                                                const EdgeInsets.only(right: 8),
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
